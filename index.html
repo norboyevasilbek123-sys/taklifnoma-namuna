@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Javohir &amp; Madina — Nikoh toʻyi taklifnomasi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #FBF8F3;
+      --surface: #F3EDE2;
+      --ink: #162621;
+      --muted: #5C6863;
+      --emerald: #1B3B32;
+      --gold: #B68D40;
+      --border: rgba(182, 141, 64, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* Konvert kirish ekrani */
+    .envelope-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: linear-gradient(160deg, #152E27 0%, #1E4238 100%);
+      color: #FBF8F3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .envelope-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .envelope-tag {
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #E2C48D;
+      margin-bottom: 24px;
+    }
+
+    .seal-btn {
+      width: 156px;
+      height: 156px;
+      border-radius: 999px;
+      border: 1px solid rgba(226, 196, 141, 0.55);
+      background: rgba(251, 248, 243, 0.06);
+      color: #FBF8F3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .seal-btn:hover {
+      transform: scale(1.03);
+      background: rgba(251, 248, 243, 0.12);
+    }
+
+    .seal-initials {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: #E2C48D;
+    }
+
+    .seal-date {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      opacity: 0.85;
+    }
+
+    .open-hint {
+      margin-top: 22px;
+      font-size: 13px;
+      color: rgba(251, 248, 243, 0.78);
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .kicker {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    h1, h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      line-height: 1.15;
+    }
+
+    /* Hero */
+    .hero {
+      padding-top: 76px;
+      padding-bottom: 64px;
+      text-align: center;
+    }
+
+    .hero-names {
+      font-size: clamp(42px, 9vw, 68px);
+      color: var(--emerald);
+      margin: 12px 0 18px;
+    }
+
+    .hero-names span.amp {
+      font-style: italic;
+      color: var(--gold);
+      margin: 0 8px;
+    }
+
+    .hero-meta {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--muted);
+      background: var(--surface);
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+    }
+
+    .hero-venue {
+      margin-top: 14px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* Taklif matni */
+    .invite-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 24px;
+      text-align: center;
+    }
+
+    .invite-card h2 {
+      font-size: clamp(28px, 6vw, 38px);
+      margin-bottom: 16px;
+      color: var(--emerald);
+    }
+
+    .invite-card p {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    .family-sign {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-style: italic;
+      color: var(--emerald);
+    }
+
+    /* Taymer */
+    .countdown-box {
+      text-align: center;
+    }
+
+    .countdown-box h2 {
+      font-size: clamp(28px, 6vw, 38px);
+      margin-bottom: 24px;
+      color: var(--emerald);
+    }
+
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .timer-cell {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 8px;
+    }
+
+    .timer-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 7vw, 42px);
+      font-weight: 600;
+      color: var(--emerald);
+      line-height: 1.1;
+    }
+
+    .timer-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .timer-caption {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Manzil */
+    .location-box {
+      text-align: center;
+    }
+
+    .location-box h2 {
+      font-size: clamp(28px, 6vw, 38px);
+      margin-bottom: 8px;
+      color: var(--emerald);
+    }
+
+    .location-box p {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 22px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: transform 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--emerald);
+      color: #FBF8F3;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--emerald);
+      border: 1px solid var(--emerald);
+    }
+
+    /* Dastur */
+    .schedule-title {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .schedule-title h2 {
+      font-size: clamp(28px, 6vw, 38px);
+      color: var(--emerald);
+    }
+
+    .schedule-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .schedule-item {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 18px;
+    }
+
+    .schedule-time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--gold);
+      min-width: 64px;
+    }
+
+    .schedule-name {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    .schedule-desc {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* Lavhalar */
+    .story-title {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .story-title h2 {
+      font-size: clamp(28px, 6vw, 38px);
+      color: var(--emerald);
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .story-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .story-card img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      display: block;
+    }
+
+    .story-caption {
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    footer {
+      padding: 48px 20px 64px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      color: var(--emerald);
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="envelope-overlay" id="envelopeOverlay">
+    <div class="envelope-tag">Toʻy taklifnomasi</div>
+    <button class="seal-btn" id="openInviteBtn" type="button" aria-label="Taklifnomani ochish">
+      <div class="seal-initials">J &amp; M</div>
+      <div class="seal-date">18 . 12 . 2026</div>
+    </button>
+    <div class="open-hint">Taklifnomani ochish uchun bosing</div>
+  </div>
+
+  <main class="container">
+    <section class="hero">
+      <div class="kicker">Nikoh toʻyi</div>
+      <h1 class="hero-names">Javohir <span class="amp">&amp;</span> Madina</h1>
+      <div class="hero-meta">
+        <span>18 dekabr 2026</span>
+        <span>·</span>
+        <span>Soat 17:00</span>
+      </div>
+      <div class="hero-venue">Qarshi, Otchopar · Xamro bobo</div>
+    </section>
+
+    <section>
+      <div class="invite-card">
+        <div class="kicker">Aziz mehmonlar</div>
+        <h2>Hayotimizdagi eng quvonchli kunni siz bilan boʻlishamiz</h2>
+        <p>
+          Sizni farzandlarimiz Javohir va Madinaning nikoh toʻyiga bagʻishlangan
+          tantanali marosimga chin qalbdan taklif etamiz. Tashrifingiz biz uchun
+          katta sharaf va quvonch boʻladi.
+        </p>
+        <div class="family-sign">Hurmat bilan, Karimovlar oilasi</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="countdown-box">
+        <div class="kicker">Sanoq</div>
+        <h2>Toʻyimizga qoldi</h2>
+        <div class="timer-grid" id="countdown">
+          <div class="timer-cell">
+            <div class="timer-num" id="days">--</div>
+            <div class="timer-label">Kun</div>
+          </div>
+          <div class="timer-cell">
+            <div class="timer-num" id="hours">--</div>
+            <div class="timer-label">Soat</div>
+          </div>
+          <div class="timer-cell">
+            <div class="timer-num" id="minutes">--</div>
+            <div class="timer-label">Daqiqa</div>
+          </div>
+          <div class="timer-cell">
+            <div class="timer-num" id="seconds">--</div>
+            <div class="timer-label">Soniya</div>
+          </div>
+        </div>
+        <div class="timer-caption">18 dekabr 2026, juma · 17:00</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="location-box">
+        <div class="kicker">Manzil</div>
+        <h2>Xamro bobo</h2>
+        <p>Qarshi shahri, Otchopar hududi</p>
+        <div class="btn-row">
+          <a
+            class="btn btn-primary"
+            href="https://maps.app.goo.gl/serHqsD76HM7GYoRA"
+            target="_blank"
+            rel="noopener"
+          >Google xarita</a>
+          <a
+            class="btn btn-secondary"
+            href="https://yandex.ru/maps/?text=Xamro%20bobo%20Otchopar%20Qarshi"
+            target="_blank"
+            rel="noopener"
+          >Yandex xarita</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="schedule-title">
+        <div class="kicker">Dastur</div>
+        <h2>Toʻy kuni jadvali</h2>
+      </div>
+      <div class="schedule-list">
+        <div class="schedule-item">
+          <div class="schedule-time">17:00</div>
+          <div>
+            <div class="schedule-name">Mehmonlarni kutib olish</div>
+            <div class="schedule-desc">Xamro bobo, asosiy kirish</div>
+          </div>
+        </div>
+        <div class="schedule-item">
+          <div class="schedule-time">18:00</div>
+          <div>
+            <div class="schedule-name">Kelin-kuyov kirib kelishi</div>
+            <div class="schedule-desc">Tantanali marosim va tabriklar</div>
+          </div>
+        </div>
+        <div class="schedule-item">
+          <div class="schedule-time">19:00</div>
+          <div>
+            <div class="schedule-name">Tantanali bazm</div>
+            <div class="schedule-desc">Dasturxon, kuy-qoʻshiq va samimiy suhbat</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="story-title">
+        <div class="kicker">Lavhalar</div>
+        <h2>Goʻzal lahzalar</h2>
+      </div>
+      <div class="story-grid">
+        <div class="story-card">
+          <img src="./story1.jpg" alt="Unashtiruv uzugi va oq atirgullar" loading="lazy" />
+          <div class="story-caption">Yangi hayot boshlanishi</div>
+        </div>
+        <div class="story-card">
+          <img src="./story2.jpg" alt="Kelin va kuyov sayri" loading="lazy" />
+          <div class="story-caption">Birga yozilayotgan hikoya</div>
+        </div>
+        <div class="story-card">
+          <img src="./story3.jpg" alt="Nikoh uzuklari va taklifnoma" loading="lazy" />
+          <div class="story-caption">18-dekabr sari qadam</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-names">Javohir &amp; Madina</div>
+    <div>18 · 12 · 2026 · Xamro bobo, Qarshi</div>
+  </footer>
+
+  <script>
+    const overlay = document.getElementById("envelopeOverlay");
+    const openBtn = document.getElementById("openInviteBtn");
+    openBtn.addEventListener("click", () => {
+      overlay.classList.add("hidden");
+    });
+
+    // Ortga sanash taymeri: 18 dekabr 2026, 17:00 (Toshkent vaqti +05:00)
+    const targetDate = new Date("2026-12-18T17:00:00+05:00").getTime();
+
+    function updateCountdown() {
+      const now = Date.now();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("days").textContent = String(days).padStart(2, "0");
+      document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
