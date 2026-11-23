@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Javohir &amp; Madina — Nikoh to'yi</title>
+
+  <!-- Telegram va ijtimoiy tarmoqlar uchun havola kartasi -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://taklifnoma-namuna.vercel.app/" />
+  <meta property="og:title" content="Javohir &amp; Madina — Nikoh to'yi" />
+  <meta property="og:description" content="18-dekabr 2026, soat 17:00 · Qarshi, Xamro bobo to'yxonasi" />
+  <meta property="og:image" content="https://taklifnoma-namuna.vercel.app/story1.jpg" />
+  <meta property="og:image:secure_url" content="https://taklifnoma-namuna.vercel.app/story1.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Javohir &amp; Madina — Nikoh to'yi" />
+  <meta name="twitter:description" content="18-dekabr 2026, soat 17:00 · Qarshi, Xamro bobo to'yxonasi" />
+  <meta name="twitter:image" content="https://taklifnoma-namuna.vercel.app/story1.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --emerald: #173828;
+      --emerald-deep: #0f2419;
+      --cream: #f4ebd8;
+      --cream-soft: #efe3ca;
+      --gold: #c8a252;
+      --gold-soft: rgba(200, 162, 82, 0.45);
+      --text-light: #fbf6ec;
+      --text-muted: rgba(251, 246, 236, 0.78);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--emerald-deep);
+      color: var(--text-light);
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* 1-EKRAN: KONVERTLI KIRISH */
+    #envelope-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: radial-gradient(circle at top, #1f4b36 0%, #112a1e 65%, #0b1c14 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      transition: opacity 0.65s ease, transform 0.65s ease, visibility 0.65s ease;
+    }
+
+    #envelope-screen.hidden {
+      opacity: 0;
+      transform: translateY(-24px);
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .envelope-subtitle {
+      font-size: 11px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 26px;
+    }
+
+    .envelope-box {
+      position: relative;
+      width: 280px;
+      max-width: 84vw;
+      height: 185px;
+      background: var(--cream);
+      border-radius: 6px;
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+      cursor: pointer;
+      margin-bottom: 30px;
+    }
+
+    .envelope-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 49.5%, rgba(160, 134, 82, 0.25) 50%, transparent 50.5%),
+                  linear-gradient(225deg, transparent 49.5%, rgba(160, 134, 82, 0.25) 50%, transparent 50.5%);
+      pointer-events: none;
+    }
+
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 104px;
+      background: var(--cream-soft);
+      clip-path: polygon(0 0, 50% 100%, 100% 0);
+      border-bottom: 1px solid rgba(170, 140, 80, 0.25);
+    }
+
+    .envelope-seal {
+      position: absolute;
+      left: 50%;
+      top: 54%;
+      transform: translate(-50%, -50%);
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #d7b364, #b08839);
+      color: #fff9ee;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 21px;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+      z-index: 2;
+    }
+
+    .open-btn {
+      background: transparent;
+      color: var(--text-light);
+      border: 1px solid var(--gold-soft);
+      padding: 13px 26px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .open-btn:hover {
+      background: rgba(200, 162, 82, 0.14);
+      border-color: var(--gold);
+    }
+
+    /* ASOSIY SAHIFA */
+    #invitation-content {
+      position: relative;
+      width: 100%;
+    }
+
+    /* 2-EKRAN: HERO BO'LIM */
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 36px 20px 64px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url("story1.jpg");
+      background-size: cover;
+      background-position: center;
+      filter: blur(2px) brightness(0.66);
+      transform: scale(1.06);
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(14, 38, 26, 0.58) 0%,
+        rgba(17, 45, 31, 0.52) 50%,
+        rgba(11, 28, 19, 0.82) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-frame {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      max-width: 440px;
+      min-height: 82vh;
+      border: 1px solid var(--gold-soft);
+      padding: 44px 20px 34px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hero-kicker {
+      font-size: 11px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--cream-soft);
+      margin-bottom: 14px;
+    }
+
+    .couple-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      line-height: 1.06;
+      color: var(--text-light);
+    }
+
+    .couple-names .name {
+      display: block;
+      font-size: clamp(42px, 11vw, 62px);
+    }
+
+    .couple-names .ampersand {
+      display: block;
+      font-style: italic;
+      font-size: clamp(26px, 7vw, 38px);
+      color: var(--gold);
+      margin: 6px 0;
+    }
+
+    .hero-divider {
+      width: 68px;
+      height: 1px;
+      background: var(--gold);
+      margin: 22px auto;
+      opacity: 0.85;
+    }
+
+    .hero-meta {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+
+    .hero-venue {
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .scroll-hint {
+      margin-top: 28px;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--cream-soft);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 28px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+
+    /* UCHIB YURUVCHI MAYDA ZARRALAR */
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      bottom: -24px;
+      border-radius: 50%;
+      opacity: 0.55;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.6;
+      }
+      85% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(-110vh) translateX(22px) rotate(180deg);
+        opacity: 0;
+      }
+    }
+
+    /* KEYINGI BO'LIMLAR */
+    .section {
+      position: relative;
+      z-index: 3;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 64px 20px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 14px;
+    }
+
+    .section-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 28px;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .count-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--gold-soft);
+      border-radius: 10px;
+      padding: 14px 6px;
+    }
+
+    .count-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      color: var(--gold);
+      display: block;
+    }
+
+    .count-label {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .story-card {
+      border: 1px solid var(--gold-soft);
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .story-card img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .map-btn {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 12px 24px;
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: background 0.25s ease;
+    }
+
+    .map-btn:hover {
+      background: rgba(200, 162, 82, 0.18);
+    }
+
+    footer {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding: 28px 16px 84px;
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(200, 162, 82, 0.18);
+    }
+
+    /* MUSIQA TUGMASI (PASTKI O'NG BURCHAK) */
+    #musicBtn {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 900;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid var(--gold-soft);
+      background: rgba(15, 36, 25, 0.88);
+      color: var(--cream);
+      font-size: 17px;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1-KO'RINISH: KONVERTLI KIRISH -->
+  <div id="envelope-screen">
+    <p class="envelope-subtitle">To'y taklifnomasi</p>
+
+    <div class="envelope-box" id="envelopeBox" role="button" tabindex="0" aria-label="Taklifnomani ochish">
+      <div class="envelope-flap"></div>
+      <div class="envelope-seal">J &amp; M</div>
+    </div>
+
+    <button class="open-btn" id="openInvitationBtn" type="button">Taklifnomani ochish</button>
+  </div>
+
+  <!-- UCHIB YURUVCHI ZARRALAR -->
+  <div class="particles" id="particles" aria-hidden="true"></div>
+
+  <!-- ASOSIY TAKLIFNOMA -->
+  <main id="invitation-content">
+    <!-- 2-KO'RINISH: ASOSIY EKRAN -->
+    <section class="hero-section">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+
+      <div class="hero-frame">
+        <div>
+          <p class="hero-kicker">Nikoh to'yi</p>
+          <h1 class="couple-names">
+            <span class="name">Javohir</span>
+            <span class="ampersand">&amp;</span>
+            <span class="name">Madina</span>
+          </h1>
+          <div class="hero-divider"></div>
+          <p class="hero-meta">18-dekabr 2026 &nbsp;·&nbsp; Soat 17:00</p>
+          <p class="hero-venue">Qarshi · Xamro bobo to'yxonasi</p>
+        </div>
+
+        <a href="#details" class="scroll-hint">
+          <span>Pastga</span>
+          <span class="scroll-line"></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- SANA, TAYMER VA MANZIL -->
+    <section class="section" id="details">
+      <h2 class="section-title">Quvonchli kunimizga oz qoldi</h2>
+      <p class="section-text">
+        Siz aziz mehmonlarni hayotimizdagi eng unutilmas kunda — nikoh kechamizda birga bo'lishga taklif etamiz.
+      </p>
+
+      <div class="countdown-grid" id="countdown">
+        <div class="count-card"><span class="count-num" id="days">00</span><span class="count-label">Kun</span></div>
+        <div class="count-card"><span class="count-num" id="hours">00</span><span class="count-label">Soat</span></div>
+        <div class="count-card"><span class="count-num" id="minutes">00</span><span class="count-label">Daqiqa</span></div>
+        <div class="count-card"><span class="count-num" id="seconds">00</span><span class="count-label">Soniya</span></div>
+      </div>
+
+      <div style="margin-top: 36px;">
+        <h3 class="section-title" style="font-size: 28px;">Manzil</h3>
+        <p class="section-text" style="margin-bottom: 8px;">
+          <strong>Xamro bobo to'yxonasi</strong><br />
+          Qarshi shahri, Otchopar hududi
+        </p>
+        <a
+          class="map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=Xamro+bobo+toyxonasi+Qarshi+Otchopar"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Xaritada ochish
+        </a>
+      </div>
+    </section>
+
+    <!-- RASMLAR GALEREYASI -->
+    <section class="section" style="padding-top: 12px;">
+      <h2 class="section-title">Unutilmas lahzalar</h2>
+      <div class="story-grid">
+        <div class="story-card"><img src="story1.jpg" alt="Javohir va Madina — 1-rasm" /></div>
+        <div class="story-card"><img src="story2.jpg" alt="Javohir va Madina — 2-rasm" /></div>
+        <div class="story-card"><img src="story3.jpg" alt="Javohir va Madina — 3-rasm" /></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Javohir &amp; Madina · 18-dekabr 2026
+  </footer>
+
+  <!-- MUSIQA FAYLI VA TUGMASI -->
+  <audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
+  <button id="musicBtn" type="button" aria-label="Musiqani yoqish yoki o'chirish">♪</button>
+
+  <script>
+    (function () {
+      const envelopeScreen = document.getElementById("envelope-screen");
+      const openBtn = document.getElementById("openInvitationBtn");
+      const envelopeBox = document.getElementById("envelopeBox");
+      const audio = document.getElementById("bgMusic");
+      const musicBtn = document.getElementById("musicBtn");
+
+      let isPlaying = false;
+
+      function updateMusicIcon() {
+        musicBtn.textContent = isPlaying ? "🔊" : "🔇";
+      }
+
+      function playMusic() {
+        if (!audio) return;
+        audio.play().then(() => {
+          isPlaying = true;
+          updateMusicIcon();
+        }).catch(() => {});
+      }
+
+      function toggleMusic() {
+        if (!audio) return;
+        if (!isPlaying || audio.paused) {
+          playMusic();
+        } else {
+          audio.pause();
+          isPlaying = false;
+          updateMusicIcon();
+        }
+      }
+
+      function openInvitation() {
+        envelopeScreen.classList.add("hidden");
+        playMusic();
+      }
+
+      openBtn.addEventListener("click", openInvitation);
+      envelopeBox.addEventListener("click", openInvitation);
+      envelopeBox.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openInvitation();
+        }
+      });
+
+      musicBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        toggleMusic();
+      });
+
+      updateMusicIcon();
+
+      // Ortga sanash taymeri: 2026-yil 18-dekabr, soat 17:00
+      const targetDate = new Date("2026-12-18T17:00:00").getTime();
+
+      function updateCountdown() {
+        const now = Date.now();
+        const diff = Math.max(0, targetDate - now);
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((diff / (1000 * 60)) % 60);
+        const s = Math.floor((diff / 1000) % 60);
+
+        document.getElementById("days").textContent = String(d).padStart(2, "0");
+        document.getElementById("hours").textContent = String(h).padStart(2, "0");
+        document.getElementById("minutes").textContent = String(m).padStart(2, "0");
+        document.getElementById("seconds").textContent = String(s).padStart(2, "0");
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      // Uchib yuruvchi mayda zarralar
+      const particlesWrap = document.getElementById("particles");
+      const colors = ["#e8cfa0", "#c8a252", "#f6ebd4"];
+
+      for (let i = 0; i < 18; i++) {
+        const dot = document.createElement("span");
+        dot.className = "particle";
+        const size = 6 + (i % 5) * 3;
+        dot.style.width = size + "px";
+        dot.style.height = (size * 0.72) + "px";
+        dot.style.left = ((i * 5.7) % 98) + "%";
+        dot.style.background = colors[i % colors.length];
+        dot.style.animationDuration = (9 + (i % 6) * 2.2) + "s";
+        dot.style.animationDelay = ((i % 7) * 1.4) + "s";
+        particlesWrap.appendChild(dot);
+      }
+    })();
+  </script>
+</body>
+</html>
